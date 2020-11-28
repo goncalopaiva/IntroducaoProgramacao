@@ -10,12 +10,11 @@
 #ifndef PROJETOIAPG2021_PROJETO_H
 #define PROJETOIAPG2021_PROJETO_H
 
-#define TAM_VECTOR 100
-#define NUM_PERGUNTAS 20
+#define TAM_VECTOR 150
+#define NUM_PERGUNTAS 6
 #define NUM_JOGADORES 10
 
 typedef struct perguntas {
-    int num_perguntas;
     char categoria[TAM_VECTOR];
     char pergunta[TAM_VECTOR];
     char opcao1[TAM_VECTOR];
@@ -30,6 +29,8 @@ typedef struct jogadores {
     char nome[TAM_VECTOR];
     int pontuacao;
 } JOGADOR;
+
+int main_projeto();
 
 /**
  * Função que pede ao utilizador o numero de jogadores e os respetivos nomes.

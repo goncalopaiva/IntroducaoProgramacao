@@ -24,10 +24,8 @@ int main() {
     printf("* * * * * * * * * * * * * * * * * * * * * * * * *\n");
     printf("* * * * * * * * B E M   V I N D O * * * * * * * *\n");
     printf("* * * * * * * * * * * * * * * * * * * * * * * * *\n\n");
-    read_file();
-    print_perguntas();
-    init_jogadores();
-    modo_jogo();
+
+    main_projeto();
 
 }
 

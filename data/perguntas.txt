@@ -1,6 +1,6 @@
 Astronomia;Qual e o terceiro planeta do sistema solar?;Mercurio;Terra;Marte;Terra
 Programacao;Qual das seguintes funcoes em C nao e um ciclo?;Switch;For;While;Switch
-Entretenimento;Qual foi o primeiro look de Rachel na serie friends?;Um fato completo;Um vestido de noiva;Um biquini;Um vestido de noive
+Entretenimento;Qual foi o primeiro look de Rachel na serie Friends?;Um fato completo;Um vestido de noiva;Um biquini;Um vestido de noiva
 Entretenimento;Qual era o nome original da serie Friends?;Insomnia Cafe;Buddies;idk;Insomnia Cafe
 Entretenimento;Por quem Gunther na serie Friends tinha uma crush?;Phoebe;Monica;Rachel;Rachel
 Entretenimento;Qual a frase de engate de Joey em Friends?;"How you doing?";"Hey gorgeous!";"What's up?";"How you doing?"

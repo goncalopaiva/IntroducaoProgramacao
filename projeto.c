@@ -7,19 +7,27 @@
 
 PERGUNTA perguntas [NUM_PERGUNTAS];
 JOGADOR jogadores [NUM_JOGADORES];
+int nrPerguntasPartida=0; //Utilizador determina quantas perguntas terá a partida
+
+int main_projeto() {
+    read_file();
+    //print_perguntas();
+    init_jogadores();
+    modo_jogo();
+
+}
 
 int read_file() {
     FILE *fp=NULL;
-    fp=fopen("perguntas.csv","r");
-    fscanf(fp,"%d",&perguntas->num_perguntas);
+    fp=fopen("perguntas.txt","r");
     if (fp!=NULL)
     {
-        int i=0;
-        for(i=0;i<perguntas->num_perguntas;i++)
+        for(int i=0;i<NUM_PERGUNTAS-1;i++)
         {
             //Categoria;Pergunta;Opcao1;Opcao2;Opcao3;Resposta
             fscanf(fp,"%s;%s;%s;%s;%s;%s",perguntas[i].categoria,perguntas[i].pergunta,perguntas[i].opcao1,perguntas[i].opcao2,perguntas[i].opcao3,perguntas[i].resposta);
         }
+        printf("Ficheiro lido com sucesso.\n\n");
         fclose(fp);
     }
     else
@@ -32,17 +40,21 @@ int read_file() {
 void init_jogadores() {
     printf("Insira o numero de jogadores:  ");
     scanf("%d", &jogadores->num_jogadores);
+    //jogadores->num_jogadores = getchar();
     for (int i=0; i<jogadores->num_jogadores; i++) {
         printf("Insira o nome do jogador %d:  ",i+1);
         scanf("%s",&jogadores->nome[i]);
         jogadores->id=i+1;
         jogadores->pontuacao=0;
     }
+    printf("\n\n");
 }
 
 void modo_jogo() {
     int modo_jogo;
-    printf("Deseja perguntas aleatorias (1) ou perguntas por categoria (2)? ");
+    printf("\nQuantas perguntas terá a partida? ");
+    scanf("%d",&nrPerguntasPartida);
+    printf("\nDeseja perguntas aleatorias (1) ou perguntas por categoria (2)? ");
     scanf("%d",&modo_jogo);
     if (modo_jogo==1) {
         //perguntas aleatorias
@@ -52,17 +64,19 @@ void modo_jogo() {
 }
 
 void print_perguntas() {
-    for (int i=0; i<perguntas->num_perguntas; i++){
-        printf("CATEGORIA: %s\n->%s\n1. %s\t2. %s\t3. %s",perguntas[i].categoria,perguntas[i].pergunta,perguntas[i].opcao1,perguntas[i].opcao2,perguntas[i].opcao3);
+    for (int i=0; i<NUM_PERGUNTAS; i++){
+        printf("\n%s\n\t1. %s\t2. %s\t3. %s",perguntas[i].pergunta,perguntas[i].opcao1,perguntas[i].opcao2,perguntas[i].opcao3);
     }
+    printf("\n\n");
 }
 
 void print_categorias() {
     //ATENÇÃO: Vai imprimir a categoria de cada pergunta. Mudar para imprimir só as categorias diferentes.
     printf("Lista de categorias: \n");
-    for (int i=0; i<perguntas->num_perguntas; i++) {
+    for (int i=0; i<NUM_PERGUNTAS-1; i++) {
         printf("\t%d. %s\n",i+1, perguntas->categoria);
     }
 }
+
 
 
