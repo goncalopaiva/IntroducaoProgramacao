@@ -6,7 +6,7 @@
 #include "projeto.h"
 
 /*
- * REQUISITOS
+ * ::::REQUISITOS::::
  * 1. Inicializacao dos dados a partir da leitura de um ficheiro
  * --->2. Inserir o numero de utilizadores
  * --->3. Inserir o nome dos utilizadores
@@ -16,7 +16,7 @@
  * 7. Escolher o numero de perguntas de cada partida
  * 8. Escolha aleatória de perguntas
  * 9. Escolher só algumas categorias de perguntas
- * 10. Cada jogador tenha um token que pode ser usado para saber a resposta da pargunta
+ * 10. Cada jogador tenha um token que pode ser usado para saber a resposta da pergunta
  */
 
 int main() {

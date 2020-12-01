@@ -11,8 +11,8 @@
 #define PROJETOIAPG2021_PROJETO_H
 
 #define TAM_VECTOR 150
-#define NUM_PERGUNTAS 6
-#define NUM_JOGADORES 10
+#define NUM_PERGUNTAS 5
+#define NUM_JOGADORES 2
 
 typedef struct perguntas {
     char categoria[TAM_VECTOR];
@@ -24,18 +24,16 @@ typedef struct perguntas {
 } PERGUNTA;
 
 typedef struct jogadores {
-    int num_jogadores;
     int id;
     char nome[TAM_VECTOR];
     int pontuacao;
 } JOGADOR;
 
-int main_projeto();
-
 /**
- * Função que pede ao utilizador o numero de jogadores e os respetivos nomes.
+ * Funcao main
+ * @return
  */
-void init_jogadores();
+int main_projeto();
 
 /**
  * Funcao que lê as perguntas do ficheiro.
@@ -45,18 +43,41 @@ void init_jogadores();
 int read_file();
 
 /**
+ * Função que pede ao utilizador o numero de jogadores e os respetivos nomes.
+ */
+void init_jogadores();
+
+/**
+ * Funcao principal idk (?)
+ * @return
+ */
+int start_game();
+
+/**
  * Funcao que pergunta ao utilizador o modo de jogo
  */
 void modo_jogo();
 
 /**
- * Funcao que lista de perguntas.
- */
-void print_perguntas();
-
-/**
  * Funcao que lista as categorias.
  */
 void print_categorias();
+
+/**
+ * Funcao que verifica se a resposta escolhida esta certa ou errada
+ * @return
+ */
+int check_resposta();
+
+/**
+ * Função que escreve no ficheiro a partida, hora/dia, e o vencedor
+ * @return
+ */
+int write_file();
+
+/**
+ * Funcao que imprime o resultado da partida
+ */
+void print_resultados();
 
 #endif //PROJETOIAPG2021_PROJETO_H
