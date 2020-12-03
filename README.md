@@ -6,12 +6,12 @@
    
 ###Requisitos
 
-- [ ] (1) Permitir a inicialização dos dados a partir da leitura de um ficheiro de texto;
+- [X] (1) Permitir a inicialização dos dados a partir da leitura de um ficheiro de texto;
 - [X] (2) Permitir inserir o número jogadores;
 - [X] (3) Permitir inserir o nome dos jogadores;
 - [ ] (4) Manter a contabilização de pontos baseados nas respostas correctas de cada
 jogador;
-- [ ] (5) Apresentar o total de respostas certas e vencedor no fim do jogo;
+- [X] (5) Apresentar o total de respostas certas e vencedor no fim do jogo;
 - [ ] (6) Permitir a exportação para ficheiro dos jogadores e respectiva pontuação, assim
 como a data e hora da partida;
 - [ ] (7) Permitir escolher o número de perguntas de cada partida;
