@@ -10,9 +10,9 @@ void print_jogadores();
 
 PERGUNTA perguntas [NUM_PERGUNTAS];
 JOGADOR jogadores [NUM_JOGADORES];
-int num_jogadores;
-const int nrPerguntasPartida=0; //Utilizador determina quantas perguntas terá a partida
-PERGUNTA perguntas_partida [nrPerguntasPartida];
+int num_jogadores=1;
+const int nrPerguntasPartida; //Utilizador determina quantas perguntas terá a partidagit
+PERGUNTA perguntas_partida[3];
 
 int main_projeto() {
 
@@ -151,13 +151,14 @@ void print_categorias() {
 
 }
 
-int check_resposta(char op1[], char op2[], char op3[], char opcao, char resposta()) {
+
+int check_resposta(char *op1, char *op2, char *op3, char opcao, char *resposta) {
     int resposta_certa;
-    if (op1 == resposta) {
-        resposta_certa=1
-    } else if (op2[] == resposta[]) {
+    if (strcmp(op1, resposta)==0) {
+        resposta_certa=1;
+    } else if (strcmp(op2, resposta)==0) {
         resposta_certa=2;
-    } else if (op3[] == resposta[]) {
+    } else if (strcmp(op3, resposta)==0) {
         resposta_certa=3;
     }
 
@@ -184,7 +185,7 @@ void print_resultados () {
     //print vencedor e pontos
     for (int i=0; i<num_jogadores; i++) {
         if (jogadores[i+1].pontuacao > jogadores[i].pontuacao) {
-            for (int j=0; j<strlen(jogadores[i+1].nome)) {
+            for (int j=0; j<strlen(jogadores[i+1].nome); j++) {
                 vencedor[j] = jogadores[i+1].nome[j];
             }
         }

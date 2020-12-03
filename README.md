@@ -22,8 +22,10 @@ da pergunta.
 
 
 ###Funcionalidades implementadas
+- (1) Permitir a inicialização dos dados a partir da leitura de um ficheiro de texto;
 - (2) Permitir inserir o número jogadores;
 - (3) Permitir inserir o nome dos jogadores;
+- (5) Apresentar o total de respostas certas e vencedor no fim do jogo;
 
 ###Funcionalidades parcialmente implementadas
 

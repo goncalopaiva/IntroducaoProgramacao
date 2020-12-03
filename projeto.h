@@ -67,7 +67,7 @@ void print_categorias();
  * Funcao que verifica se a resposta escolhida esta certa ou errada
  * @return
  */
-int check_resposta();
+int check_resposta(char op1[], char op2[], char op3[], char opcao, char resposta[]);
 
 /**
  * Função que escreve no ficheiro a partida, hora/dia, e o vencedor
