@@ -1,6 +1,6 @@
 //
 // IAPG - 2020/2021
-// Gonçalo Brandão Paiva, 39807
+// Gonçalo Paiva (39807) e João Miranda (40229)
 //
 
 #include "projeto.h"
