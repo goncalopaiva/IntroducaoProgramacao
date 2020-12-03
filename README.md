@@ -1,6 +1,6 @@
 #UFP // Projeto IAPG
 
-#####Gonçalo Paiva, 39807
+#####Gonçalo Paiva (39807) e João Miranda (40229)
 
 ######Prof. José Torres e Prof. João Viana
    
