@@ -1,18 +1,24 @@
 //
-// IAPG - 2020/2021
+// UFP - IAPG - 2020/2021
 // Gonçalo Paiva (39807) e João Miranda (40229)
 //
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 
 #ifndef PROJETOIAPG2021_PROJETO_H
 #define PROJETOIAPG2021_PROJETO_H
 
 #define TAM_VECTOR 150
-#define NUM_PERGUNTAS 5
+#define NUM_PERGUNTAS 11
 #define NUM_JOGADORES 2
+#define PERGUNTAS_PARTIDA 10
+
+typedef struct categorias {
+    char categoria [TAM_VECTOR];
+} CATEGORIA;
 
 typedef struct perguntas {
     char categoria[TAM_VECTOR];
@@ -62,6 +68,11 @@ void modo_jogo();
  * Funcao que lista as categorias.
  */
 void print_categorias();
+
+/**
+ * Funlão que lista todas as perguntas e respostas
+ */
+void print_perguntas();
 
 /**
  * Funcao que verifica se a resposta escolhida esta certa ou errada
