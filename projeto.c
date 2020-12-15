@@ -14,21 +14,27 @@ CATEGORIA categorias [NUM_PERGUNTAS];
 int num_jogadores=1;
 int nrPerguntasPartida; //Utilizador determina quantas perguntas terá a partidagit
 
-
+void print_pontuacao();
 
 int main_projeto() {
 
     //TODO -> Modo de jogo. Decidir se é aleatorio ou perguntas por categoria e depois carregar as perguntas para a struct correspondente.
     //TODO -> Carregar para o ficheiro "partidas.csv" os dados da partida no final do jogo.
 
+    //TODO -> funcao check_respostas nao esta a funcionar bem
+
     //........................................................
 
     read_file(); //Sim
     init_jogadores(); //Sim
     modo_jogo();
+    fflush(stdin);
     start_game();
     write_file();
     print_resultados(); //Sim
+
+    printf("\n\n<Enter> para sair\n");
+    getchar();
 }
 
 int read_file() {
@@ -80,15 +86,18 @@ int read_file() {
 }
 
 void init_jogadores() {
-    printf("Insira o numero de jogadores:  ");
-    scanf("%d", &num_jogadores);
+    fflush(stdin);
+    printf("Insira o numero de jogadores: ");
+    scanf("%d",&num_jogadores);
     printf("\n");
+    fflush(stdin);
     for (int i=0; i<num_jogadores; i++) {
         printf("Insira o nome do jogador %d:  ", i+1);
         fgets(jogadores[i].nome,TAM_VECTOR,stdin);
         //scanf("%s",jogadores[i].nome);
         jogadores[i].id = i+1;
         jogadores[i].pontuacao = 0;
+        fflush(stdin);
     }
     printf("\n");
 }
@@ -104,7 +113,8 @@ void modo_jogo() {
         //perguntas aleatorias
 
         for (int i=0; i<nrPerguntasPartida; i++) {
-            perguntas_partida[i] = perguntas[rand()];
+            int pergunta_random = rand() %nrPerguntasPartida;
+            perguntas_partida[i] = perguntas[pergunta_random];
         }
 
 
@@ -118,22 +128,41 @@ void modo_jogo() {
 }
 
 int start_game() {
-    char opcao;
-    printf("* * * * * * * * * * * * * * * * * * * * * * * * *\n");
-    printf("* * * * * * * V A M O S  C O M E C A R * * * * * *\n");
-    printf("* * * * * * * * * * * * * * * * * * * * * * * * *\n\n");
+    int opcao;
+    printf("\n\n");
+    printf("* * * * * * * * * * * * * * * * * * * * * * * * * *\n");
+    printf("* * * * * * * V A M O S   C O M E C A R * * * * * *\n");
+    printf("* * * * * * * * * * * * * * * * * * * * * * * * * *\n\n");
 
     for (int i=0; i<nrPerguntasPartida; i++) {
-        for (int j=0; j<num_jogadores; j++){
-            printf("\n%s\n\t1. %s\t2. %s\t3. %s\n",perguntas[i].pergunta,perguntas[i].opcao1,perguntas[i].opcao2,perguntas[i].opcao3);
-            printf("Reposta: ");
-            scanf("%c", &opcao);
+        char opcao1[TAM_VECTOR], opcao2[TAM_VECTOR], opcao3[TAM_VECTOR], resposta_correta[TAM_VECTOR];
+        int int_resposta_correta;
 
-            if (check_resposta(perguntas[i].opcao1, perguntas[i].opcao2, perguntas[i].opcao3, opcao, perguntas[i].resposta) == 1) {
+        strcpy(opcao1, perguntas[i].opcao1);
+        strcpy(opcao2, perguntas[i].opcao2);
+        strcpy(opcao3, perguntas[i].opcao3);
+        strcpy(resposta_correta, perguntas[i].resposta);
+
+        strtok(resposta_correta, "\n");
+
+        if (strcmp(opcao1, resposta_correta) == 0) int_resposta_correta=1;
+        if (strcmp(opcao2, resposta_correta) == 0) int_resposta_correta=2;
+        if (strcmp(opcao3, resposta_correta) == 0) int_resposta_correta=3;
+
+        for (int j=0; j<num_jogadores; j++) {
+            fflush(stdin);
+            printf("JOGADOR %d: %s",jogadores[j].id,jogadores[j].nome);
+            printf("%d. %s\n1. %s\t2. %s\t3. %s\n",i+1,perguntas[i].pergunta,perguntas[i].opcao1,perguntas[i].opcao2,perguntas[i].opcao3);
+            printf("Reposta: ");
+            scanf("%d", &opcao);
+
+            if (opcao == int_resposta_correta) {
                 jogadores[j].pontuacao++;
             }
+            printf("\n\n");
         }
     }
+    fflush(stdin);
 }
 
 int write_file () {
@@ -156,23 +185,36 @@ int write_file () {
 }
 
 void print_resultados () {
-    printf("* * * * * * * * * * * * * * * * * * * * * * * * *\n");
-    printf("* * * * * * * *  V E N C E D O R  * * * * * * * *\n");
-    printf("* * * * * * * * * * * * * * * * * * * * * * * * *\n\n");
+    strcpy(vencedor[0].nome, jogadores[0].nome);
+    vencedor[0].pontuacao = jogadores[0].pontuacao;
 
-    for (int i=0; i<num_jogadores; i++) {
-        if (jogadores[i+1].pontuacao > jogadores[i].pontuacao) {
-            strcpy(vencedor[0].nome, jogadores[i+1].nome);
-            vencedor[0].pontuacao = jogadores[i+1].pontuacao;
+    for (int i = 1; i < num_jogadores - 1; i++) {
+        if (jogadores[i].pontuacao > jogadores[i - 1].pontuacao) {
+            strcpy(vencedor[0].nome, jogadores[i].nome);
+            vencedor[0].pontuacao = jogadores[i].pontuacao;
         }
     }
 
-    printf("VENCEDOR: %s \t\t PONTUAÇÃO: %d \n\n",vencedor[0].nome, vencedor[0].pontuacao);
+    printf("* * * * * * * * * * * * * * * * * * * * * * * * *\n");
+    printf("* * * * * * * * * * * * * * * * * * * * * * * * *\n");
+    printf("* * * * * * * *  V E N C E D O R  * * * * * * * *\n");
+    printf("* * * * * * * * * * * * * * * * * * * * * * * * *\n");
+    printf("* * * * * * * * * * * * * * * * * * * * * * * * *\n\n");
 
-    for (int i=0; i<num_jogadores; i++) {
-        printf("%d \t%s \t%d \n",jogadores[i].id, jogadores[i].nome, jogadores[i].pontuacao);
+    printf("%s ganhou o jogo.\n\n", strtok(vencedor[0].nome, "\n"));
+
+    printf("PONTUACOES:\n");
+    for (int i = 0; i < num_jogadores; i++) {
+        printf("\tJogador %d. %s \t\tPontuacao: %d\n", jogadores[i].id, strtok(jogadores[i].nome, "\n"), jogadores[i].pontuacao);
     }
 
+}
+
+void print_pontuacao() {
+    for (int i=0; i<num_jogadores; i++) {
+        printf("\nJogador %d. %s",i+1, jogadores[i].nome);
+        printf("Pontuacao: %d \n\n", jogadores[i].pontuacao);
+    }
 }
 
 void print_perguntas() {
@@ -187,25 +229,6 @@ void print_perguntas() {
 
 }
 
-int check_resposta(char *op1, char *op2, char *op3, char opcao, char *resposta) {
-    int resposta_certa;
-
-    if (strcmp(op1, resposta) == 0) {
-        resposta_certa=1;
-    }
-    if (strcmp(op2, resposta) == 0) {
-        resposta_certa=2;
-    }
-    if (strcmp(op3, resposta) == 0) {
-        resposta_certa=3;
-    }
-    //VERIFICAR SE A OPCAO ESCOLHIDA ESTA CORRETA
-    if (opcao == resposta_certa) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
 
 void print_categorias() {
     int size=NUM_PERGUNTAS;
