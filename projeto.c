@@ -14,24 +14,16 @@ CATEGORIA categorias [NUM_PERGUNTAS];
 int num_jogadores=1;
 int nrPerguntasPartida; //Utilizador determina quantas perguntas terá a partidagit
 
-void print_pontuacao();
-
 int main_projeto() {
-
-    //TODO -> Modo de jogo. Decidir se é aleatorio ou perguntas por categoria e depois carregar as perguntas para a struct correspondente.
-    //TODO -> Carregar para o ficheiro "partidas.csv" os dados da partida no final do jogo.
-
-    //TODO -> funcao check_respostas nao esta a funcionar bem
-
-    //........................................................
 
     read_file(); //Sim
     init_jogadores(); //Sim
     modo_jogo();
     fflush(stdin);
     start_game();
-    write_file();
     print_resultados(); //Sim
+    write_file();
+
 
     printf("\n\n<Enter> para sair\n");
     getchar();
@@ -102,7 +94,7 @@ void init_jogadores() {
     printf("\n");
 }
 
-void modo_jogo() {
+int modo_jogo() {
     int mdjogo;
     char categoria_escolhida[TAM_VECTOR];
     printf("\nQuantas perguntas tera a partida? ");
@@ -113,7 +105,7 @@ void modo_jogo() {
         //perguntas aleatorias
 
         for (int i=0; i<nrPerguntasPartida; i++) {
-            int pergunta_random = rand() %nrPerguntasPartida;
+            int pergunta_random = rand() %NUM_PERGUNTAS;
             perguntas_partida[i] = perguntas[pergunta_random];
         }
 
@@ -122,7 +114,22 @@ void modo_jogo() {
         //perguntas por categoria
         print_categorias();
         printf("Introduza a categoria: ");
-        fgets(categoria_escolhida, TAM_VECTOR, stdin);
+        scanf("%s",categoria_escolhida);
+        int j=0;
+
+        for (int i=0; i<NUM_PERGUNTAS; i++) {
+
+            if (strcmp(perguntas[i].categoria, categoria_escolhida) == 0) {
+                strcpy(perguntas_partida[j].categoria, perguntas[i].categoria);
+                strcpy(perguntas_partida[j].pergunta, perguntas[i].pergunta);
+                strcpy(perguntas_partida[j].opcao1, perguntas[i].opcao1);
+                strcpy(perguntas_partida[j].opcao2, perguntas[i].opcao2);
+                strcpy(perguntas_partida[j].opcao3, perguntas[i].opcao3);
+                strcpy(perguntas_partida[j].resposta, perguntas[i].resposta);
+                j++;
+            }
+
+        }
 
     }
 }
@@ -138,10 +145,10 @@ int start_game() {
         char opcao1[TAM_VECTOR], opcao2[TAM_VECTOR], opcao3[TAM_VECTOR], resposta_correta[TAM_VECTOR];
         int int_resposta_correta;
 
-        strcpy(opcao1, perguntas[i].opcao1);
-        strcpy(opcao2, perguntas[i].opcao2);
-        strcpy(opcao3, perguntas[i].opcao3);
-        strcpy(resposta_correta, perguntas[i].resposta);
+        strcpy(opcao1, perguntas_partida[i].opcao1);
+        strcpy(opcao2, perguntas_partida[i].opcao2);
+        strcpy(opcao3, perguntas_partida[i].opcao3);
+        strcpy(resposta_correta, perguntas_partida[i].resposta);
 
         strtok(resposta_correta, "\n");
 
@@ -152,7 +159,7 @@ int start_game() {
         for (int j=0; j<num_jogadores; j++) {
             fflush(stdin);
             printf("JOGADOR %d: %s",jogadores[j].id,jogadores[j].nome);
-            printf("%d. %s\n1. %s\t2. %s\t3. %s\n",i+1,perguntas[i].pergunta,perguntas[i].opcao1,perguntas[i].opcao2,perguntas[i].opcao3);
+            printf("%d. %s\n1. %s\t2. %s\t3. %s\n",i+1,perguntas_partida[i].pergunta,perguntas_partida[i].opcao1,perguntas_partida[i].opcao2,perguntas_partida[i].opcao3);
             printf("Reposta: ");
             scanf("%d", &opcao);
 
@@ -179,9 +186,10 @@ int write_file () {
     t = time(NULL);
     struct tm tm = *localtime(&t);
 
-    fprintf(fp, "%d-%d-%d;%d:%d;%s;%d",tm.tm_mday, tm.tm_mon+1, tm.tm_year+1900,tm.tm_hour, tm.tm_min, vencedor[0].nome, vencedor[0].pontuacao);
+    fprintf(fp, "%d-%d-%d;%d:%d;%s;%d/%d\n",tm.tm_mday, tm.tm_mon+1, tm.tm_year+1900,tm.tm_hour, tm.tm_min, strtok(vencedor[0].nome,"\n"), vencedor[0].pontuacao,nrPerguntasPartida);
 
     fclose(fp);
+
 }
 
 void print_resultados () {
@@ -201,7 +209,7 @@ void print_resultados () {
     printf("* * * * * * * * * * * * * * * * * * * * * * * * *\n");
     printf("* * * * * * * * * * * * * * * * * * * * * * * * *\n\n");
 
-    printf("%s ganhou o jogo.\n\n", strtok(vencedor[0].nome, "\n"));
+    printf("----------> %s ganhou o jogo <----------\n\n", strtok(vencedor[0].nome, "\n"));
 
     printf("PONTUACOES:\n");
     for (int i = 0; i < num_jogadores; i++) {
@@ -210,21 +218,15 @@ void print_resultados () {
 
 }
 
-void print_pontuacao() {
-    for (int i=0; i<num_jogadores; i++) {
-        printf("\nJogador %d. %s",i+1, jogadores[i].nome);
-        printf("Pontuacao: %d \n\n", jogadores[i].pontuacao);
-    }
-}
 
 void print_perguntas() {
 
     printf("++++++++ LISTA DE PERGUNTAS E RESPOSTAS ++++++++\n\n");
 
-    for (int i = 0; i < NUM_PERGUNTAS-1; i++) {
-        printf("Pergunta %d. %s\n", i+1, perguntas[i].pergunta);
-        printf("1. %s \n2. %s \n3. %s \n", perguntas[i].opcao1, perguntas[i].opcao2, perguntas[i].opcao3);
-        printf("RESPOSTA: %s \n\n",perguntas[i].resposta);
+    for (int i = 0; i < nrPerguntasPartida; i++) {
+        printf("Pergunta %d. %s\n", i+1, perguntas_partida[i].pergunta);
+        printf("1. %s \n2. %s \n3. %s \n", perguntas_partida[i].opcao1, perguntas_partida[i].opcao2, perguntas_partida[i].opcao3);
+        printf("RESPOSTA: %s \n\n",perguntas_partida[i].resposta);
     }
 
 }
@@ -232,20 +234,22 @@ void print_perguntas() {
 
 void print_categorias() {
     int size=NUM_PERGUNTAS;
-    for (int i=0; i<size-1; i++) {
+    for (int i=0; i<size; i++) {
         strcpy(categorias[i].categoria, perguntas[i].categoria);
     }
 
-    //Remover as categorias duplicadas
+    for (int j=0; j<size; j++) {
+        for (int k=j+1; k<size; k++) {
+            if (strcmp(categorias[j].categoria, categorias[k].categoria) == 0) {
+                strcpy(categorias[k].categoria, " ");
+            }
+        }
+    }
 
     printf("\nCATEGORIAS:\n");
-    for (int i=0; i<size-1; i++){
-        printf("\t%s \n",categorias[i].categoria);
+    for (int i=0; i<size; i++){
+        if (strcmp(categorias[i].categoria, " ") != 0) {
+
+            printf("\t%s \n",categorias[i].categoria); }
     }
 }
-
-
-
-
-
-

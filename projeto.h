@@ -12,7 +12,7 @@
 #define PROJETOIAPG2021_PROJETO_H
 
 #define TAM_VECTOR 150
-#define NUM_PERGUNTAS 11
+#define NUM_PERGUNTAS 16
 #define NUM_JOGADORES 10
 #define PERGUNTAS_PARTIDA 10
 
@@ -62,7 +62,7 @@ int start_game();
 /**
  * Funcao que pergunta ao utilizador o modo de jogo
  */
-void modo_jogo();
+int modo_jogo();
 
 /**
  * Funcao que lista as categorias.

@@ -1,11 +1,17 @@
 Categoria;Pergunta;Opcao 1;Opcao 2;Opcao 3;Resposta
 Ciencia;Qual e o terceiro planeta do sistema solar?;Mercurio;Terra;Marte;Terra
 Programacao;Qual das seguintes funcoes em C nao e um ciclo?;Switch;For;While;Switch
-Entretenimento;Qual foi o primeiro look de Rachel na serie Friends?;Um fato completo;Um vestido de noiva;Um biquini;Um vestido de noive
+Entretenimento;Qual foi o primeiro look de Rachel na serie Friends?;Um fato completo;Um vestido de noiva;Um biquini;Um vestido de noiva
 Entretenimento;Qual era o nome original da serie Friends?;Insomnia Cafe;Buddies;idk;Insomnia Cafe
 Entretenimento;Por quem Gunther na serie Friends tinha uma crush?;Phoebe;Monica;Rachel;Rachel
 Entretenimento;Qual a frase de engate de Joey em Friends?;"How you doing?";"Hey gorgeous!";"What's up?";"How you doing?"
 Ciencia;Qual dos seguintes valores de PH e acido?;2;7;12;2
-Entretenimento;Qual a frase mais famosa de Game of Thrones;"Winter is coming";"Hear me roar";"Eu sou o reino";"Winter is coming"
+Entretenimento;Qual a frase mais famosa de Game of Thrones?;"Winter is coming";"Hear me roar";"Eu sou o reino";"Winter is coming"
 Geografia;Em que peninsula se encontra Portugal?;Peninsula do Alasca; Penisula do Labrador; Peninsula Iberica; Peninsula Iberica
 Ciencia;A anemia e uma doenca por falta de?;Vitamina A;Ferro;Vitamina D;Ferro
+Ciencia;Quantos planetas Terr cabem dentro do Sol?;Cem;Um milhao;Cem mil;Um milhao
+Geografia;Em que lugar vivem mais cangurus do que pessosa?;Indonesia;Nova Zelandia;Australia;Australia
+Ciencia;Quantos olhos a maior parte das aranhas tem?;Dois pares;Quatro pares;Seis pares;Quatro pares
+Ciencia;Quanto mede uma girafa?;4,8 a 5,5 metros;5 a 6 metros;7 a 8 metros;4,8 a 5,5 metros
+Ciencia;Qual a constituicao dos diamantes?;Grafite;Carbono;Osmio;carbono
+Ciencia;O etanol e produzido atraves de qual fonte de energia?;Solar;Geotermica;Biomassa;Biomassa
