@@ -8,8 +8,8 @@
 /*
  * ::::REQUISITOS::::
  * 1. Inicializacao dos dados a partir da leitura de um ficheiro
- * --->2. Inserir o numero de utilizadores
- * --->3. Inserir o nome dos utilizadores
+ * 2. Inserir o numero de utilizadores
+ * 3. Inserir o nome dos utilizadores
  * 4. Manter a contabilização de pontos
  * 5. Apresentar o total de respostas certas e o vencedor no fim do jogo
  * 6. Exportar para ficheiro dos jogadores, respetiva pontuacao e data/hora da partida
