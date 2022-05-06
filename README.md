@@ -1,10 +1,10 @@
-#UFP - Projeto IAPG - 2020/2021
+# UFP - Projeto IAPG - 2020/2021
 
-#####Gonçalo Paiva (39807) e João Miranda (40229)
+##### Gonçalo Paiva (39807) e João Miranda (40229)
 
-######Prof. José Torres e Prof. João Viana
+###### Prof. José Torres e Prof. João Viana
 
-###Funcionalidades implementadas
+### Funcionalidades implementadas
 - (1) Permitir a inicialização dos dados a partir da leitura de um ficheiro de texto;
 - (2) Permitir inserir o número jogadores;
 - (3) Permitir inserir o nome dos jogadores;
@@ -17,9 +17,9 @@
 - (9) Permitir jogar com apenas algumas categorias.
 
 
-###Funcionalidades parcialmente implementadas
+### Funcionalidades parcialmente implementadas
 
 
-###Funcionalidades não implementadas
+### Funcionalidades não implementadas
 - (10) Permitir que cada jogador tenha um token que pode ser usado para saber a resposta
   da pergunta.
